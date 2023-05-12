@@ -11,6 +11,7 @@ defineProps({
     }
 })
 </script>
+
 <template>
     <span>{{ prefix + Number.parseFloat(value).toFixed(precission) }}</span>
 </template>
