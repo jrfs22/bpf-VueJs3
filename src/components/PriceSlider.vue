@@ -6,7 +6,7 @@ export default{
             maxAmount: 50
         }
     },
-    props: ['status', 'd-none'],
+    props: ['status', 'harga'],
     computed: {
         statusSlider: function () {
             return this.status ? 'd-flex' : 'd-none'
@@ -28,15 +28,17 @@ export default{
                 type="number" 
                 id="number" 
                 class="form-control w-25" 
+                min="0"
+                max="100"
                 style="width: 60px; text-align: center;" 
-                v-model="maxAmount"
-                @change="$emit('update:harga', maxAmount)"
+                model="maxAmount"
+                @change="$parent.$emit('update:harga', maxAmount)"
             >
             <input 
                 type="range" 
                 class="custom-range" 
-                v-model="maxAmount"
-                @input="$emit('update:harga', maxAmount)"
+                model="maxAmount"
+                @input="$parent.$emit('update:harga', maxAmount)"
             >
         </div>
     </transition>

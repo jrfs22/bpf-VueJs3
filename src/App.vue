@@ -1,8 +1,7 @@
 <script>
 import {ref, onMounted} from 'vue'
-import Navbar from './components/navbar.vue'
-import PriceSlider from './components/PriceSlider.vue'
-import ProductList from './components/productList.vue'
+import Products from "./components/Products.vue"
+import Checkout from './components/Checkout.vue'
 export default {
   name: "App",
   data: function(){
@@ -13,9 +12,8 @@ export default {
     }
   },
   components: {
-    ProductList,
-    Navbar,
-    PriceSlider
+    Products,
+    Checkout
   },
   setup() {
     const product = ref([])
@@ -83,15 +81,22 @@ export default {
 <template>
 
   <div class="container mt-5">
-    <h1>ID Shop</h1>
-    <navbar 
+    <checkout 
+      :cart="cart"
+      :cartTotal="cartTotal"
+      :add="addItem"
+      @delete="deleteItem"
+    />
+    <products  
       :cart="cart"
       :cartQty="cartQty"
       :cartTotal="cartTotal"
+      :harga.sync="harga"
+      :product="product"
+      :status="status"
       @toggle="toggleSliderStatus"
+      @add="addItem"
       @delete="deleteItem"
     />
-    <price-slider :status="status" :harga.sync="harga"/>
-    <product-list :product="product" :harga="harga" @add="addItem"/>
   </div>
 </template>
